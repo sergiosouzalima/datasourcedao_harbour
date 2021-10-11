@@ -4,7 +4,7 @@
     Description..: Belongs to Model DAO to alllow access to a datasource.
     Author.......: Sergio Lima
     Updated at...: Oct, 2021
-*/
+l*/
 
 
 #include "hbclass.ch"
@@ -16,17 +16,18 @@ CREATE CLASS DaoDatasource
         METHOD getConnection() 
         METHOD Destroy()
         METHOD closeConnection()
-        
+
+    PROTECTED:
+        DATA pConnection    AS POINTER  INIT NIL
     HIDDEN:
         DATA cConnection    AS STRING   INIT ""
-        DATA pConnection    AS POINTER  INIT NIL
         DATA lCreateDB      AS LOGICAL  INIT .T. // Create database if it doesn't exist
 
 ENDCLASS
 
 METHOD New(cConnection) CLASS DaoDatasource
     ::cConnection := cConnection
-    ::pConnection := sqlite3_open("datasource.s3db", .T.)
+    ::pConnection := sqlite3_open(::cConnection, .T.)
 RETURN Self
 
 METHOD Destroy() CLASS DaoDatasource
