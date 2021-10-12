@@ -1,7 +1,7 @@
 # To validate, run:
 #   'git ls-files -i --exclude-standard'
 
-daodatasource_test
+datasourcedao_test
 *.s3db
 *.exe
 *.dll

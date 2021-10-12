@@ -1,7 +1,7 @@
 /*
     System.......: DAO
-    Program......: daodatasource_class.prg
-    Description..: Belongs to Model DAO to alllow access to a datasource.
+    Program......: datasourcedao_class.prg
+    Description..: Belongs to Model DAO to allow access to a datasource.
     Author.......: Sergio Lima
     Updated at...: Oct, 2021
 l*/
@@ -10,7 +10,7 @@ l*/
 #include "hbclass.ch"
 #require "hbsqlit3"
 
-CREATE CLASS DaoDatasource 
+CREATE CLASS DatasourceDao 
     EXPORTED:
         METHOD New(cConnection) CONSTRUCTOR
         METHOD getConnection() 
@@ -25,18 +25,18 @@ CREATE CLASS DaoDatasource
 
 ENDCLASS
 
-METHOD New(cConnection) CLASS DaoDatasource
-    ::cConnection := cConnection
+METHOD New(cConnection) CLASS DatasourceDao
+    ::cConnection := hb_defaultValue(cConnection, "datasource.s3db")
     ::pConnection := sqlite3_open(::cConnection, .T.)
 RETURN Self
 
-METHOD Destroy() CLASS DaoDatasource
+METHOD Destroy() CLASS DatasourceDao
     Self := NIL
 RETURN Self
 
-METHOD getConnection() CLASS DaoDatasource
+METHOD getConnection() CLASS DatasourceDao
 RETURN ::pConnection
 
-METHOD closeConnection() CLASS DaoDatasource
+METHOD closeConnection() CLASS DatasourceDao
 RETURN ::Destroy()
 

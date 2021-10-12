@@ -1,13 +1,13 @@
 #
-# $Id: daodatasource_test.hbp
+# $Id: datasourcedao_test.hbp
 # 
 # How to compile:
-# hbmk2 daodatasource_test.hbp
+# hbmk2 datasourcedao_test.hbp
 #
 
 -w2
 -gc3
--odaodatasource_test
+-odatasourcedao_test
 {linux}-ldl
 -lpthread
 
@@ -15,8 +15,8 @@
 hbsqlit3.hbc
 
 ../../hbexpect/lib/hbexpect.prg
-daodatasource_test.prg
-../daodatasource_class.prg
+datasourcedao_test.prg
+../datasourcedao_class.prg
 
 # Special parameters for LINUX/GTK
 {linux}-lm
