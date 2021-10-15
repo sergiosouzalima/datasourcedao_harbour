@@ -18,16 +18,16 @@ CREATE CLASS DatasourceDao
         METHOD closeConnection()
 
     PROTECTED:
-        DATA pConnection    AS POINTER  INIT NIL
+        DATA pConnection        AS POINTER  INIT NIL
     HIDDEN:
-        DATA cConnection    AS STRING   INIT ""
-        DATA lCreateDB      AS LOGICAL  INIT .T. // Create database if it doesn't exist
+        DATA cConnection        AS STRING   INIT ""
+        DATA lCreateIfNotExist  AS LOGICAL  INIT .T. // Create database if it doesn't exist
 
 ENDCLASS
 
 METHOD New(cConnection) CLASS DatasourceDao
     ::cConnection := hb_defaultValue(cConnection, "datasource.s3db")
-    ::pConnection := sqlite3_open(::cConnection, .T.)
+    ::pConnection := sqlite3_open(::cConnection, ::lCreateIfNotExist)
 RETURN Self
 
 METHOD Destroy() CLASS DatasourceDao

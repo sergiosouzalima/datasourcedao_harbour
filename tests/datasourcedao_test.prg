@@ -21,7 +21,7 @@
 
 FUNCTION Main()
 
-	begin tests
+	begin hbexpect
 		LOCAL oDataSource := NIL, pConnection := NIL
 		 
 		hb_vfErase("datasource.s3db")
@@ -43,6 +43,6 @@ FUNCTION Main()
 				enddescribe
 			enddescribe
 		enddescribe
-	endtests
+	endhbexpect
 
 RETURN NIL
